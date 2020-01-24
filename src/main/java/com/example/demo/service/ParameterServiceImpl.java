@@ -1,5 +1,7 @@
 package com.example.demo.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -10,6 +12,7 @@ import com.example.demo.dao.ParameterDao;
 import com.example.demo.dto.GroupParameterDto;
 import com.example.demo.dto.ParameterDto;
 import com.example.demo.exception.DaoException;
+import com.example.demo.exception.ParameterException;
 
 @Service
 public class ParameterServiceImpl implements ParameterService {
@@ -21,12 +24,12 @@ public class ParameterServiceImpl implements ParameterService {
 	private ParameterHelper parameterHelper;
 
 	@Override
-	public void updateGroupParameterDsOne(GroupParameterDto groupParameterDto) throws DaoException {
+	public void updateGroupParameterDsOne(GroupParameterDto groupParameterDto) throws ParameterException {
 		try {
 			parameterDao.updateGroupParameterDsOne(groupParameterDto);
 
 		} catch (Exception e) {
-			throw new DaoException(e.getMessage(), e.getCause());
+			throw new ParameterException(e.getMessage(), e.getCause());
 		}
 
 	}
@@ -37,7 +40,7 @@ public class ParameterServiceImpl implements ParameterService {
 	@Transactional(propagation = Propagation.REQUIRED, rollbackForClassName = { "Exception" })
 	@Override
 	public void createGroupParameterWithParameterDsOne(GroupParameterDto groupParameterDto, ParameterDto parameterDto)
-			throws DaoException {
+			throws ParameterException {
 		try {
 
 			// validate fields to groupParameter
@@ -59,7 +62,7 @@ public class ParameterServiceImpl implements ParameterService {
 //			}
 
 		} catch (Exception e) {
-			throw new DaoException(e.getMessage(), e.getCause());
+			throw new ParameterException(e.getMessage(), e.getCause());
 		}
 
 	}
@@ -67,7 +70,7 @@ public class ParameterServiceImpl implements ParameterService {
 	@ChainedTransaction
 	@Override
 	public void createGroupParameterWithParameterDsOneTwo(GroupParameterDto groupParameterDto,
-			ParameterDto parameterDto) throws DaoException {
+			ParameterDto parameterDto) throws ParameterException {
 		try {
 
 			/*****************************
@@ -103,9 +106,31 @@ public class ParameterServiceImpl implements ParameterService {
 //			}
 
 		} catch (Exception e) {
-			throw new DaoException(e.getMessage(), e.getCause());
+			throw new ParameterException(e.getMessage(), e.getCause());
 		}
 
+	}
+
+	@Override
+	public List<GroupParameterDto> selectListGroupParameterDsOne() throws ParameterException {
+		List<GroupParameterDto> lst = null;
+		try {
+			lst = this.parameterDao.selectListGroupParameterDsOne();
+		} catch (Exception e) {
+			throw new ParameterException(e.getMessage(), e.getCause());
+		}
+		return lst;
+	}
+
+	@Override
+	public List<GroupParameterDto> selectListGroupParameterDsTwo() throws ParameterException {
+		List<GroupParameterDto> lst = null;
+		try {
+			lst = this.parameterDao.selectListGroupParameterDsTwo();
+		} catch (Exception e) {
+			throw new ParameterException(e.getMessage(), e.getCause());
+		}
+		return lst;
 	}
 
 }

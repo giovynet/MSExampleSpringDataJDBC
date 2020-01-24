@@ -1,0 +1,25 @@
+localhost:8086/create/dsone/grupoParameterWithParameter?groupParameter={"name":"New Group"}&parameter={"name":"New Parameter"}
+
+localhost:8086/create/dsonetwo/groupParameterWithParameter?groupParameter={"name":"New Group"}&parameter={"name":"New Parameter"}
+
+
+
+
+--Example ds
+docker run -p5433:5432 --name postgres -e POSTGRES_PASSWORD=postgres -d postgres
+
+-- Call out to do ds_one and ds_two transactions
+localhost:8086/create/dsonetwo/groupParameterWithParameter?groupParameter={"name":"New Group"}&parameter={"name":"New Parameter"}
+
+-- Call out to do ds_one transaction
+localhost:8086/create/dsone/grupoParameterWithParameter?groupParameter={"name":"New Group"}&parameter={"name":"New Parameter"}
+
+-- Call out to get GroupParameter list from ds one
+localhost:8086/get/dsone/groupParameter
+
+-- Call out to get GroupParameter list from ds two
+localhost:8086/get/dsone/groupParameter
+
+--Call out to update GroupParameter in ds_one
+localhost:8086/update/dsone/groupParameter?groupParameter={"id":4,"name":"Edit Group"}
+

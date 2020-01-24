@@ -1,5 +1,8 @@
 package com.example.demo.dao;
 
+
+import java.util.List;
+
 import com.example.demo.dto.GroupParameterDto;
 import com.example.demo.dto.ParameterDto;
 import com.example.demo.exception.DaoException;
@@ -52,6 +55,18 @@ public interface ParameterDao {
 	 */
 	void updateGroupParameterDsTwo(GroupParameterDto groupParameter) throws DaoException;
 	
-
+	/**
+	 * Select list of Group Parameter from datasource one.
+	 * @throws DaoException
+	 */
+	List<GroupParameterDto> selectListGroupParameterDsOne() throws DaoException;
+	
+	/**
+	 * Select list of Group Parameter from datasource two.
+	 * @throws DaoException
+	 */
+	List<GroupParameterDto> selectListGroupParameterDsTwo() throws DaoException;
+	
+	
 	
 }

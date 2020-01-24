@@ -1,10 +1,8 @@
 package com.example.demo.dto;
 
-import java.io.Serializable;
 
-public class GroupParameterDto implements Serializable {
+public class GroupParameterDto {
 
-	private static final long serialVersionUID = 1L;
 	private Long id;
 	private String name;
 	
