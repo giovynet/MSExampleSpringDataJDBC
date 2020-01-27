@@ -1,4 +1,4 @@
-package com.example.demo.controller;
+package com.example.demo.controller.rest;
 
 import java.time.ZonedDateTime;
 import java.util.List;
